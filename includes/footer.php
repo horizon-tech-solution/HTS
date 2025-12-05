@@ -318,7 +318,7 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="home.php"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="index.php"><i class="fas fa-chevron-right"></i> Home</a></li>
                     <li><a href="services.php"><i class="fas fa-chevron-right"></i> Services</a></li>
                     <li><a href="projects.php"><i class="fas fa-chevron-right"></i> Projects</a></li>
                     <li><a href="about.php"><i class="fas fa-chevron-right"></i> About Us</a></li>
