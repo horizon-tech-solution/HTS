@@ -255,7 +255,7 @@ const Services = () => {
   return (
     <>
       <div
-        style={{ width: "100%", minHeight: "100%", padding: "clamp(16px,3vw,28px)", overflowY: "auto", WebkitOverflowScrolling: "touch" }}
+        style={{ width: "100%", minHeight: "100%", padding: "clamp(16px,3vw,28px)", overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
         onClick={() => setOpen(null)}
       >
         <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>

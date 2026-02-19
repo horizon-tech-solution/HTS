@@ -290,6 +290,7 @@ const About = () => {
           padding:  "clamp(16px, 3vw, 28px)",
           overflowY:"auto",
           WebkitOverflowScrolling: "touch",
+          touchAction: "pan-y",
         }}
         onClick={() => setSelected(null)}
       >

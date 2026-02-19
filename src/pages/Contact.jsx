@@ -103,7 +103,7 @@ const Contact = () => {
   return (
     <div style={{
       width: "100%", minHeight: "100%",
-      overflowY: "auto", WebkitOverflowScrolling: "touch",
+      overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y",
       padding: "clamp(16px, 3vw, 28px)",
       display: "flex", flexDirection: "column", gap: "clamp(20px, 4vh, 32px)",
     }}>

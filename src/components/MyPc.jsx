@@ -157,7 +157,9 @@ const MyPC = ({ onClose }) => {
           border: isMobile ? "none" : "1px solid #2e2e2e",
           boxShadow: isMobile ? "none" : "0 32px 90px rgba(0,0,0,0.65)",
           display: "flex", flexDirection: "column",
-          overflow: "hidden", pointerEvents: "all", userSelect: "none",
+          overflow: "hidden", pointerEvents: "all",
+          userSelect: isMobile ? "auto" : "none",
+          touchAction: "pan-y",
         }}
       >
         {/* ── Title bar ── */}
@@ -229,7 +231,7 @@ const MyPC = ({ onClose }) => {
 
           {/* ── Main pane ── */}
           <div
-            style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}
+            style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column", touchAction: "pan-y" }}
             onClick={() => { setSelected(null); if (isMobile) setSidebarOpen(false); }}
           >
             {/* ROOT — single click opens folder on both desktop and mobile */}
@@ -287,7 +289,7 @@ const MyPC = ({ onClose }) => {
 
             {/* INSIDE FOLDER with component */}
             {!isRoot && hasComponent && (
-              <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", display: "flex", flexDirection: "column" }}>
+              <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y", display: "flex", flexDirection: "column" }}>
                 {currentSection.component}
               </div>
             )}
