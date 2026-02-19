@@ -9,7 +9,7 @@
 //   viewMode    - "grid" | "list"
 //   onViewToggle - toggle view mode
 
-const Header = ({ title = "My PC", onClose, onMinimize, onMaximize, onRefresh, viewMode = "grid", onViewToggle }) => {
+const Header = ({ title = "HTS", onClose, onMinimize, onMaximize, onRefresh, viewMode = "grid", onViewToggle }) => {
 
   const winBtn = (label, action, hoverColor = "#3a3a3a") => (
     <button

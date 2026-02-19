@@ -1,6 +1,6 @@
 // Nav.jsx
 // Props:
-//   path       - current path array e.g. ["My PC"] or ["My PC", "Services"]
+//   path       - current path array e.g. ["HTS"] or ["HTS", "Services"]
 //   canBack    - bool
 //   canForward - bool
 //   onBack     - handler
@@ -10,7 +10,7 @@
 //   searchVal  - search input value
 //   onSearch   - search change handler
 
-const Nav = ({ path = ["My PC"], canBack, canForward, onBack, onForward, onUp, onSegment, searchVal = "", onSearch }) => {
+const Nav = ({ path = ["HTS"], canBack, canForward, onBack, onForward, onUp, onSegment, searchVal = "", onSearch }) => {
 
   const arrowBtn = (icon, action, enabled) => (
     <button

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PcIcon = ({ size = 52, label = "My PC", onDoubleClick }) => {
+const PcIcon = ({ size = 52, label = "HTS", onDoubleClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (

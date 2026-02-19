@@ -129,7 +129,7 @@ export default function Home() {
   };
 
   const icons = [
-    { id: "pc",    node: <PcIcon    label="My PC"       onDoubleClick={openPC} /> },
+    { id: "pc",    node: <PcIcon    label="Horizon Tech Solution"       onDoubleClick={openPC} /> },
     { id: "trash", node: <TrashIcon label="Recycle Bin" isEmpty onDoubleClick={() => {}} /> },
   ];
 
