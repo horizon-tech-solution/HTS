@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import PcIcon from "../components/PcIcon";
 import TrashIcon from "../components/TrashIcon";
-import MyPC from "../components/MyPc";
+import MyPC from "../components/MyPC";
 
 // ─── Config ────────────────────────────────────────────────────────────────────
 const STORAGE_KEY = "desktop_v5";
@@ -129,8 +129,8 @@ export default function Home() {
   };
 
   const icons = [
-    { id: "pc",    node: <PcIcon    label="Horizon Tech Solution"       onDoubleClick={openPC} /> },
-    { id: "trash", node: <TrashIcon label="Recycle Bin" isEmpty onDoubleClick={() => {}} /> },
+    { id: "pc",    node: <PcIcon    label="Horizont Tech"  onClick={openPC} /> },
+    { id: "trash", node: <TrashIcon label="Recycle Bin" isEmpty onClick={() => {}} /> },
   ];
 
   return (
@@ -166,6 +166,40 @@ export default function Home() {
         onClick={() => setSelected(null)}
         style={{ width: "100vw", height: "100vh", overflow: "hidden", position: "relative", userSelect: "none" }}
       >
+        {/* Company name — centered on desktop */}
+        <div style={{
+          position:       "absolute",
+          top:            "50%",
+          left:           "50%",
+          transform:      "translate(-50%, -50%)",
+          textAlign:      "center",
+          pointerEvents:  "none",
+          zIndex:         1,
+        }}>
+          <p style={{
+            fontFamily:    "'Courier New', monospace",
+            fontSize:      "clamp(11px, 1.4vw, 14px)",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color:         "rgba(14, 13, 13, 0.22)",
+            marginBottom:  "10px",
+          }}>
+            Welcome to
+          </p>
+          <h1 style={{
+            fontFamily:    "'Courier New', monospace",
+            fontSize:      "clamp(22px, 4vw, 52px)",
+            fontWeight:    "normal",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color:         "rgba(0, 0, 0, 0.13)",
+            lineHeight:    1.2,
+            margin:        0,
+          }}>
+            Horizon<br />Tech Solution
+          </h1>
+        </div>
+        
         {icons.map(({ id, node }) => {
           const isSel = selected === id;
           return (
@@ -173,7 +207,11 @@ export default function Home() {
               key={id}
               onMouseDown={(e) => { e.stopPropagation(); startDrag(e, id); setSelected(id); }}
               onTouchStart={(e) => { e.stopPropagation(); startDrag(e, id); setSelected(id); }}
-              onClick={(e) => { e.stopPropagation(); setSelected(id); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelected(id);
+                if (id === "pc") openPC();
+              }}
               style={{
                 position: "absolute",
                 left:  positions[id]?.x ?? 24,
@@ -232,14 +270,14 @@ export default function Home() {
               </span>
             ))}
           </nav>
-          {/* <div style={{ flex: 1, textAlign: "right" }}>
+          <div style={{ flex: 1, textAlign: "right" }}>
             <span style={{ color: "#666", fontSize: "clamp(11px,1.2vw,13px)", fontFamily: "'Courier New', monospace", letterSpacing: "0.05em" }}>
               {fmtTime(time)}
             </span>
             <span style={{ color: "#bbb", fontSize: "clamp(10px,1vw,11px)", fontFamily: "'Courier New', monospace", marginLeft: "7px" }}>
               {fmtDate(time)}
             </span>
-          </div> */}
+          </div>
         </footer>
       </div>
     </>

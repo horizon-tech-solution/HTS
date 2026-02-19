@@ -1,11 +1,10 @@
 // FolderIcon.jsx
-const FolderIcon = ({ color = "#60a5fa", size = 80, label = "Folder", onClick, onDoubleClick, selected }) => {
+const FolderIcon = ({ color = "#60a5fa", size = 80, label = "Folder", onClick, selected }) => {
   const patternId = `pat-${(color + label).replace(/[^a-zA-Z0-9]/g, "")}`;
 
   return (
     <div
       onClick={onClick}
-      onDoubleClick={onDoubleClick}
       style={{
         display:        "flex",
         flexDirection:  "column",
@@ -51,7 +50,7 @@ const FolderIcon = ({ color = "#60a5fa", size = 80, label = "Folder", onClick, o
       <span style={{
         fontSize:      "12px",
         fontFamily:    "'Courier New', monospace",
-        color:         "#e8e8e8",          // light so it's visible on dark bg
+        color:         "#e8e8e8",
         letterSpacing: "0.02em",
         textAlign:     "center",
         lineHeight:    1.3,

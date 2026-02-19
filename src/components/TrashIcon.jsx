@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-const TrashIcon = ({ size = 52, label = "Recycle Bin", isEmpty = true, onDoubleClick }) => {
+const TrashIcon = ({ size = 52, label = "Recycle Bin", isEmpty = true, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      onDoubleClick={onDoubleClick}
+      onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{

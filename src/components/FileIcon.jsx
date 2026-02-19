@@ -3,17 +3,15 @@ import { useState } from "react";
 // FileIcon.jsx — matches Windows/macOS document icon style:
 // rounded rectangle body, top-right folded corner, 3 content lines centered
 
-const FileIcon = ({ label = "file", size = 72, selected, onClick, onDoubleClick, color = "#a78bfa" }) => {
+const FileIcon = ({ label = "file", size = 72, selected, onClick, color = "#a78bfa" }) => {
   const [hovered, setHovered] = useState(false);
   const active = hovered || selected;
 
   return (
     <div
       onClick={onClick}
-      onDoubleClick={onDoubleClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      // Mobile: touch feedback
       onTouchStart={() => setHovered(true)}
       onTouchEnd={() => setHovered(false)}
       style={{
@@ -30,7 +28,6 @@ const FileIcon = ({ label = "file", size = 72, selected, onClick, onDoubleClick,
         border:        selected ? `1px solid ${color}55` : "1px solid transparent",
         transition:    "background 0.15s, border-color 0.15s, transform 0.12s",
         transform:     active && !selected ? "scale(1.05)" : "scale(1)",
-        // Touch-friendly minimum tap target
         minWidth:      "70px",
         WebkitTapHighlightColor: "transparent",
       }}
@@ -65,7 +62,7 @@ const FileIcon = ({ label = "file", size = 72, selected, onClick, onDoubleClick,
           style={{ transition: "stroke 0.2s" }}
         />
 
-        {/* 3 content lines — centered in body, like the reference */}
+        {/* 3 content lines */}
         <rect x="11" y="34" width="34" height="3" rx="1.5"
           fill={active ? "#888" : "#4a4a4a"}
           style={{ transition: "fill 0.2s" }}
@@ -75,7 +72,7 @@ const FileIcon = ({ label = "file", size = 72, selected, onClick, onDoubleClick,
           style={{ transition: "fill 0.2s" }}
         />
         <rect x="11" y="52" width="22" height="3" rx="1.5"
-          fill={active ? "#555" : "#333" }
+          fill={active ? "#555" : "#333"}
           style={{ transition: "fill 0.2s" }}
         />
       </svg>

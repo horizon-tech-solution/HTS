@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FolderIcon from "../components/FolderIcon";
 import FileIcon   from "../components/FileIcon";
-import Homi from "../projects/Homi";
+import Homi       from "../projects/Homi";
 
 // ─── Projects registry ─────────────────────────────────────────────────────────
 // Add new projects here. Each gets a folder. Files inside open a component.
@@ -26,7 +26,7 @@ const PROJECTS = [
   //   label:  "ProjectName",
   //   color:  "#60a5fa",
   //   status: "wip",
-  //   files: [{ id: "...", label: "....project", color: "#60a5fa", component: YourPage }],
+  //   files: [{ id: "...", label: "project.file", color: "#60a5fa", component: YourPage }],
   // },
 ];
 
@@ -36,24 +36,15 @@ const STATUS_COLOR = {
   concept: "#a78bfa",
 };
 
-// ─── Projects.jsx ──────────────────────────────────────────────────────────────
+// ─── Projects ──────────────────────────────────────────────────────────────────
 const Projects = () => {
-  // null = root, string = open folder id
   const [openFolder, setOpenFolder] = useState(null);
   const [selected,   setSelected]   = useState(null);
-  const [openFile,   setOpenFile]   = useState(null); // component to render fullscreen
-
-  const lastTap = {};
-  const handleTap = (id, action) => {
-    const now = Date.now();
-    if (now - (lastTap[id] || 0) < 350) action();
-    else setSelected(id);
-    lastTap[id] = now;
-  };
+  const [openFile,   setOpenFile]   = useState(null);
 
   const currentProject = PROJECTS.find((p) => p.id === openFolder);
 
-  // ── Root: show project folders ──
+  // ── Root: project folders ──
   if (!openFile && !openFolder) {
     return (
       <div
@@ -69,13 +60,13 @@ const Projects = () => {
             <div key={proj.id} style={{ position: "relative" }}>
               {/* Status badge */}
               <div style={{
-                position: "absolute", top: "6px", right: "6px", zIndex: 2,
-                background: STATUS_COLOR[proj.status] + "22",
-                border: `1px solid ${STATUS_COLOR[proj.status]}55`,
-                color: STATUS_COLOR[proj.status],
-                fontSize: "8px", fontFamily: "'Courier New', monospace",
+                position:      "absolute", top: "6px", right: "6px", zIndex: 2,
+                background:    STATUS_COLOR[proj.status] + "22",
+                border:        `1px solid ${STATUS_COLOR[proj.status]}55`,
+                color:         STATUS_COLOR[proj.status],
+                fontSize:      "8px", fontFamily: "'Courier New', monospace",
                 letterSpacing: "0.1em", padding: "2px 6px", borderRadius: "20px",
-                textTransform: "uppercase",
+                textTransform: "uppercase", pointerEvents: "none",
               }}>
                 {proj.status}
               </div>
@@ -85,17 +76,11 @@ const Projects = () => {
                 size={76}
                 label={proj.label}
                 selected={selected === proj.id}
-                onClick={(e) => { e.stopPropagation(); setSelected(proj.id); }}
-                onDoubleClick={() => { setOpenFolder(proj.id); setSelected(null); }}
-                onTouchEnd={(e) => { e.stopPropagation(); handleTap(proj.id, () => { setOpenFolder(proj.id); setSelected(null); }); }}
+                onClick={(e) => { e.stopPropagation(); setOpenFolder(proj.id); setSelected(null); }}
               />
             </div>
           ))}
         </div>
-
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em", marginTop: "24px" }}>
-          double-click a project to open
-        </p>
       </div>
     );
   }
@@ -140,16 +125,10 @@ const Projects = () => {
               size={76}
               color={file.color}
               selected={selected === file.id}
-              onClick={(e) => { e.stopPropagation(); setSelected(file.id); }}
-              onDoubleClick={() => setOpenFile(file)}
-              onTouchEnd={(e) => { e.stopPropagation(); handleTap(file.id, () => setOpenFile(file)); }}
+              onClick={(e) => { e.stopPropagation(); setOpenFile(file); }}
             />
           ))}
         </div>
-
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em", marginTop: "24px" }}>
-          double-click to open
-        </p>
       </div>
     );
   }

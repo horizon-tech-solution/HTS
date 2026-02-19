@@ -279,17 +279,7 @@ const About = () => {
   const [open,     setOpen]     = useState(null);
   const [selected, setSelected] = useState(null);
 
-  // Double-tap detection for mobile
-  const lastTap = { story: 0, team: 0 };
-  const handleTap = (id, openFn) => {
-    const now = Date.now();
-    if (now - lastTap[id] < 350) {
-      openFn();
-    } else {
-      setSelected(id);
-    }
-    lastTap[id] = now;
-  };
+
 
   return (
     <>
@@ -326,10 +316,7 @@ const About = () => {
             size={clampSize()}
             color="#a78bfa"
             selected={selected === "story"}
-            onClick={(e) => { e.stopPropagation(); setSelected("story"); }}
-            onDoubleClick={() => setOpen("story")}
-            // mobile double-tap
-            onTouchEnd={(e) => { e.stopPropagation(); handleTap("story", () => setOpen("story")); }}
+            onClick={(e) => { e.stopPropagation(); setOpen("story"); }}
           />
 
           {/* team.profile */}
@@ -338,21 +325,11 @@ const About = () => {
             size={clampSize()}
             color="#60a5fa"
             selected={selected === "team"}
-            onClick={(e) => { e.stopPropagation(); setSelected("team"); }}
-            onDoubleClick={() => setOpen("team")}
-            onTouchEnd={(e) => { e.stopPropagation(); handleTap("team", () => setOpen("team")); }}
+            onClick={(e) => { e.stopPropagation(); setOpen("team"); }}
           />
         </div>
 
-        <p style={{
-          color:         "#282828",
-          fontSize:      "clamp(9px, 1.1vw, 10px)",
-          fontFamily:    "'Courier New', monospace",
-          letterSpacing: "0.06em",
-          marginTop:     "clamp(20px, 4vh, 36px)",
-        }}>
-          double-click to open
-        </p>
+
       </div>
 
       {/* TRUE FULLSCREEN — above everything */}
