@@ -287,7 +287,7 @@ const MyPC = ({ onClose }) => {
 
             {/* INSIDE FOLDER with component */}
             {!isRoot && hasComponent && (
-              <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", display: "flex", flexDirection: "column" }}>
                 {currentSection.component}
               </div>
             )}

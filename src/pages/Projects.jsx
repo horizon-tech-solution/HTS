@@ -14,7 +14,7 @@ const PROJECTS = [
     files: [
       {
         id:        "homi-project",
-        label:     "homi",
+        label:     "homi.project",
         color:     "#34d399",
         component: Homi,
       },
@@ -48,7 +48,7 @@ const Projects = () => {
   if (!openFile && !openFolder) {
     return (
       <div
-        style={{ width: "100%", height: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)" }}
+        style={{ width: "100%", minHeight: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)" }}
         onClick={() => setSelected(null)}
       >
         <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>
@@ -89,7 +89,7 @@ const Projects = () => {
   if (!openFile && openFolder && currentProject) {
     return (
       <div
-        style={{ width: "100%", height: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)" }}
+        style={{ width: "100%", minHeight: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)" }}
         onClick={() => setSelected(null)}
       >
         {/* Back nav */}

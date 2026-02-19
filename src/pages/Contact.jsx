@@ -5,8 +5,8 @@ import { useState } from "react";
 // Replace CONTACT_INFO with real details
 
 const CONTACT_INFO = {
-  email:    "horizontechsolution680@gmail.com",
-  location: "cameroon",
+  email:    "hello@yourcompany.com",
+  location: "Your City, Country",
   response: "We respond within 24 hours.",
 };
 
@@ -63,7 +63,7 @@ const Contact = () => {
   if (sent) {
     return (
       <div style={{
-        width: "100%", height: "100%",
+        width: "100%", minHeight: "100%",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "32px", gap: "20px",
@@ -102,12 +102,12 @@ const Contact = () => {
 
   return (
     <div style={{
-      width: "100%", height: "100%",
+      width: "100%", minHeight: "100%",
       overflowY: "auto", WebkitOverflowScrolling: "touch",
       padding: "clamp(16px, 3vw, 28px)",
       display: "flex", flexDirection: "column", gap: "clamp(20px, 4vh, 32px)",
     }}>
-      <p style={{ color: "#ffffff", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+      <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
         Contact — contact.form
       </p>
 

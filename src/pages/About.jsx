@@ -104,7 +104,7 @@ const FullscreenViewer = ({ type, onClose }) => {
           fontFamily:    "'Courier New', monospace",
           letterSpacing: "0.08em",
         }}>
-          {type === "story" ? `${COMPANY_NAME} — story` : `${COMPANY_NAME} — team`}
+          {type === "story" ? `${COMPANY_NAME} — story.txt` : `${COMPANY_NAME} — team.profile`}
         </span>
 
         {/* Close button — big enough for mobile */}
@@ -154,7 +154,7 @@ const FullscreenViewer = ({ type, onClose }) => {
               textTransform: "uppercase",
               marginBottom:  "clamp(32px, 6vh, 64px)",
             }}>
-              {COMPANY_NAME} / story
+              {COMPANY_NAME} / story.txt
             </p>
             <pre style={{
               fontFamily:    "'Courier New', monospace",
@@ -186,7 +186,7 @@ const FullscreenViewer = ({ type, onClose }) => {
             marginBottom:  "clamp(28px, 5vh, 56px)",
             textAlign:     "center",
           }}>
-            {COMPANY_NAME} / team
+            {COMPANY_NAME} / team.profile
           </p>
 
           <div style={{
@@ -286,7 +286,7 @@ const About = () => {
       <div
         style={{
           width:    "100%",
-          height:   "100%",
+          minHeight: "100%",
           padding:  "clamp(16px, 3vw, 28px)",
           overflowY:"auto",
           WebkitOverflowScrolling: "touch",
@@ -312,7 +312,7 @@ const About = () => {
         }}>
           {/* story.txt */}
           <FileIcon
-            label="story"
+            label="story.txt"
             size={clampSize()}
             color="#a78bfa"
             selected={selected === "story"}
@@ -321,7 +321,7 @@ const About = () => {
 
           {/* team.profile */}
           <FileIcon
-            label="team"
+            label="team.profile"
             size={clampSize()}
             color="#60a5fa"
             selected={selected === "team"}
