@@ -149,15 +149,15 @@ const JobViewer = ({ job, onClose }) => (
     position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
     zIndex: 99999, background: "#0c0c0c",
     display: "flex", flexDirection: "column",
-    overflowY: "auto", WebkitOverflowScrolling: "touch",
+    // NO overflow here
   }}>
-    {/* Top bar */}
+    {/* Top bar — fixed, never scrolls */}
     <div style={{
-      position: "sticky", top: 0, zIndex: 1,
+      flexShrink: 0,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 clamp(16px, 5vw, 48px)",
       height: "clamp(48px, 7vh, 60px)",
-      background: "#0c0c0c", borderBottom: "1px solid #1a1a1a", flexShrink: 0,
+      background: "#0c0c0c", borderBottom: "1px solid #1a1a1a",
     }}>
       <span style={{ color: "#2e2e2e", fontSize: "11px", fontFamily: "'Courier New', monospace", letterSpacing: "0.08em" }}>
         careers / {job.label}
@@ -179,9 +179,14 @@ const JobViewer = ({ job, onClose }) => (
       </button>
     </div>
 
-    {/* Content */}
+    {/* Content — this is the ONLY thing that scrolls */}
     <div style={{
-      flex: 1, display: "flex", alignItems: "flex-start", justifyContent: "center",
+      flex: 1,
+      overflowY: "auto",
+      overflowX: "hidden",
+      WebkitOverflowScrolling: "touch",
+      touchAction: "pan-y",
+      display: "flex", alignItems: "flex-start", justifyContent: "center",
       padding: "clamp(40px, 7vw, 90px) clamp(20px, 6vw, 60px)",
     }}>
       <div style={{ width: "100%", maxWidth: "640px", display: "flex", flexDirection: "column", gap: "32px" }}>
@@ -263,7 +268,7 @@ const Careers = () => {
   return (
     <>
       <div
-        style={{ width: "100%", minHeight: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y", padding: "clamp(16px,3vw,28px)", display: "flex", flexDirection: "column", gap: "clamp(20px,4vh,28px)" }}
+        style={{ width: "100%", padding: "clamp(16px,3vw,28px)", display: "flex", flexDirection: "column", gap: "clamp(20px,4vh,28px)" }}
         onClick={() => setSelected(null)}
       >
         <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>

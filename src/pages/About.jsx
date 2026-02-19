@@ -79,16 +79,12 @@ const FullscreenViewer = ({ type, onClose }) => {
       background: "#0c0c0c",
       display:    "flex",
       flexDirection: "column",
-      overflowY:  "auto",
-      overflowX:  "hidden",
-      WebkitOverflowScrolling: "touch",
+      // NO overflow here
     }}>
 
-      {/* ── Top bar ── */}
+      {/* ── Top bar — fixed, never scrolls ── */}
       <div style={{
-        position:   "sticky",
-        top:        0,
-        zIndex:     1,
+        flexShrink:  0,
         display:    "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -96,7 +92,6 @@ const FullscreenViewer = ({ type, onClose }) => {
         height:     "clamp(48px, 7vh, 60px)",
         background: "#0c0c0c",
         borderBottom: "1px solid #1a1a1a",
-        flexShrink:  0,
       }}>
         <span style={{
           color:         "#3a3a3a",
@@ -140,6 +135,10 @@ const FullscreenViewer = ({ type, onClose }) => {
       {type === "story" && (
         <div style={{
           flex:      1,
+          overflowY: "auto",
+          overflowX: "hidden",
+          WebkitOverflowScrolling: "touch",
+          touchAction: "pan-y",
           display:   "flex",
           alignItems:"flex-start",
           justifyContent:"center",
@@ -175,6 +174,10 @@ const FullscreenViewer = ({ type, onClose }) => {
       {type === "team" && (
         <div style={{
           flex:    1,
+          overflowY: "auto",
+          overflowX: "hidden",
+          WebkitOverflowScrolling: "touch",
+          touchAction: "pan-y",
           padding: "clamp(32px, 6vw, 80px) clamp(16px, 5vw, 48px)",
         }}>
           <p style={{
@@ -285,12 +288,8 @@ const About = () => {
     <>
       <div
         style={{
-          width:    "100%",
-          minHeight: "100%",
-          padding:  "clamp(16px, 3vw, 28px)",
-          overflowY:"auto",
-          WebkitOverflowScrolling: "touch",
-          touchAction: "pan-y",
+          width:   "100%",
+          padding: "clamp(16px, 3vw, 28px)",
         }}
         onClick={() => setSelected(null)}
       >

@@ -154,18 +154,16 @@ const ServiceViewer = ({ service, onClose }) => {
       background:"#0c0c0c",
       display:   "flex",
       flexDirection: "column",
-      overflowY: "auto",
-      WebkitOverflowScrolling: "touch",
+      // NO overflow here — let children control it
     }}>
-      {/* Top bar */}
+      {/* Top bar — fixed, never scrolls */}
       <div style={{
-        position:   "sticky", top: 0, zIndex: 1,
+        flexShrink: 0,
         display:    "flex", alignItems: "center", justifyContent: "space-between",
         padding:    "0 clamp(16px, 5vw, 48px)",
         height:     "clamp(48px, 7vh, 60px)",
         background: "#0c0c0c",
         borderBottom:"1px solid #1a1a1a",
-        flexShrink: 0,
       }}>
         <span style={{ color: "#2e2e2e", fontSize: "11px", fontFamily: "'Courier New', monospace", letterSpacing: "0.08em" }}>
           services / {service.label}
@@ -187,9 +185,13 @@ const ServiceViewer = ({ service, onClose }) => {
         </button>
       </div>
 
-      {/* Content */}
+      {/* Scrollable content — this is the ONLY thing that scrolls */}
       <div style={{
         flex: 1,
+        overflowY: "auto",
+        overflowX: "hidden",
+        WebkitOverflowScrolling: "touch",
+        touchAction: "pan-y",
         display: "flex", alignItems: "flex-start", justifyContent: "center",
         padding: "clamp(40px, 8vw, 100px) clamp(20px, 6vw, 60px)",
       }}>
@@ -255,7 +257,7 @@ const Services = () => {
   return (
     <>
       <div
-        style={{ width: "100%", minHeight: "100%", padding: "clamp(16px,3vw,28px)", overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+        style={{ width: "100%", padding: "clamp(16px,3vw,28px)" }}
         onClick={() => setOpen(null)}
       >
         <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>

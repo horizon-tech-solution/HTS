@@ -11,24 +11,21 @@ const Homi = ({ onClose }) => {
       background:"#0c0c0c",
       display:   "flex",
       flexDirection: "column",
-      overflowY: "auto",
-      WebkitOverflowScrolling: "touch",
     }}>
-      {/* Top bar */}
+      {/* Top bar — fixed, never scrolls */}
       <div style={{
-        position:   "sticky", top: 0, zIndex: 1,
+        flexShrink: 0,
         display:    "flex", alignItems: "center", justifyContent: "space-between",
         padding:    "0 clamp(16px, 5vw, 48px)",
         height:     "clamp(48px, 7vh, 60px)",
         background: "#0c0c0c",
         borderBottom:"1px solid #1a1a1a",
-        flexShrink: 0,
       }}>
         <span style={{
           color: "#2e2e2e", fontSize: "11px",
           fontFamily: "'Courier New', monospace", letterSpacing: "0.08em",
         }}>
-          projects / homi / homi
+          projects / homi / homi.project
         </span>
         <button
           onClick={onClose}
@@ -47,9 +44,13 @@ const Homi = ({ onClose }) => {
         </button>
       </div>
 
-      {/* Content */}
+      {/* Content — the ONLY scrollable element */}
       <div style={{
         flex: 1,
+        overflowY: "auto",
+        overflowX: "hidden",
+        WebkitOverflowScrolling: "touch",
+        touchAction: "pan-y",
         display: "flex", justifyContent: "center",
         padding: "clamp(40px, 7vw, 90px) clamp(20px, 6vw, 60px)",
       }}>
