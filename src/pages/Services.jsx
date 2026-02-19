@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import FileIcon from "../components/FileIcon";
 
-// ─── Services data ─────────────────────────────────────────────────────────────
 const SERVICES = [
   {
     id:    "custom-software",
@@ -142,11 +142,11 @@ Just honest technical guidance.
   },
 ];
 
-// ─── Fullscreen viewer ─────────────────────────────────────────────────────────
+// ─── Viewer — rendered at document.body via portal ────────────────────────────
 const ServiceViewer = ({ service, onClose }) => {
   if (!service) return null;
 
-  return (
+  return createPortal(
     <div style={{
       position:  "fixed",
       top: 0, left: 0, right: 0, bottom: 0,
@@ -154,99 +154,61 @@ const ServiceViewer = ({ service, onClose }) => {
       background:"#0c0c0c",
       display:   "flex",
       flexDirection: "column",
-      // NO overflow here — let children control it
     }}>
-      {/* Top bar — fixed, never scrolls */}
+      {/* Top bar */}
       <div style={{
-        flexShrink: 0,
-        display:    "flex", alignItems: "center", justifyContent: "space-between",
-        padding:    "0 clamp(16px, 5vw, 48px)",
-        height:     "clamp(48px, 7vh, 60px)",
-        background: "#0c0c0c",
+        flexShrink:  0,
+        display:     "flex",
+        alignItems:  "center",
+        justifyContent: "space-between",
+        padding:     "0 clamp(16px,5vw,48px)",
+        height:      "clamp(48px,7vh,60px)",
+        background:  "#0c0c0c",
         borderBottom:"1px solid #1a1a1a",
       }}>
-        <span style={{ color: "#2e2e2e", fontSize: "11px", fontFamily: "'Courier New', monospace", letterSpacing: "0.08em" }}>
+        <span style={{ color:"#444", fontSize:"11px", fontFamily:"'Courier New',monospace", letterSpacing:"0.08em" }}>
           services / {service.label}
         </span>
         <button
           onClick={onClose}
-          style={{
-            background: "transparent", border: "1px solid #2a2a2a",
-            color: "#555", cursor: "pointer",
-            padding: "0 16px", height: "34px", borderRadius: "6px",
-            fontFamily: "'Courier New', monospace", fontSize: "11px",
-            letterSpacing: "0.06em", transition: "all 0.15s",
-            WebkitTapHighlightColor: "transparent",
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#555"; e.currentTarget.style.color = "#fff"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2a2a"; e.currentTarget.style.color = "#555"; }}
-        >
-          ✕ close
-        </button>
+          style={{ background:"transparent", border:"1px solid #2a2a2a", color:"#555", cursor:"pointer", padding:"0 16px", height:"34px", borderRadius:"6px", fontFamily:"'Courier New',monospace", fontSize:"11px", letterSpacing:"0.06em", transition:"all 0.15s", WebkitTapHighlightColor:"transparent" }}
+          onMouseEnter={(e)=>{ e.currentTarget.style.borderColor="#555"; e.currentTarget.style.color="#fff"; }}
+          onMouseLeave={(e)=>{ e.currentTarget.style.borderColor="#2a2a2a"; e.currentTarget.style.color="#555"; }}
+        >✕ close</button>
       </div>
 
-      {/* Scrollable content — this is the ONLY thing that scrolls */}
+      {/* Scrollable body — standalone, nothing blocking it */}
       <div style={{
-        flex: 1,
-        overflowY: "auto",
+        flex:      1,
+        overflowY: "scroll",
         overflowX: "hidden",
         WebkitOverflowScrolling: "touch",
-        touchAction: "pan-y",
-        display: "flex", alignItems: "flex-start", justifyContent: "center",
-        padding: "clamp(40px, 8vw, 100px) clamp(20px, 6vw, 60px)",
+        padding:   "clamp(32px,7vw,90px) clamp(20px,6vw,60px)",
       }}>
-        <div style={{ width: "100%", maxWidth: "640px" }}>
-          {/* Accent line */}
-          <div style={{ width: "40px", height: "3px", background: service.color, borderRadius: "2px", marginBottom: "32px" }} />
-
-          <h1 style={{
-            color: "#e8e8e8", fontFamily: "'Courier New', monospace",
-            fontSize: "clamp(20px, 3.5vw, 32px)", fontWeight: "normal",
-            letterSpacing: "0.03em", marginBottom: "14px", lineHeight: 1.3,
-          }}>
+        <div style={{ maxWidth:"640px", margin:"0 auto" }}>
+          <div style={{ width:"40px", height:"3px", background:service.color, borderRadius:"2px", marginBottom:"32px" }} />
+          <h1 style={{ color:"#e8e8e8", fontFamily:"'Courier New',monospace", fontSize:"clamp(20px,3.5vw,32px)", fontWeight:"normal", letterSpacing:"0.03em", marginBottom:"14px", lineHeight:1.3 }}>
             {service.title}
           </h1>
-
-          <p style={{
-            color: service.color, fontFamily: "'Courier New', monospace",
-            fontSize: "clamp(12px, 1.6vw, 14px)", letterSpacing: "0.05em",
-            marginBottom: "48px", fontStyle: "italic",
-          }}>
+          <p style={{ color:service.color, fontFamily:"'Courier New',monospace", fontSize:"clamp(12px,1.6vw,14px)", letterSpacing:"0.05em", marginBottom:"40px", fontStyle:"italic" }}>
             {service.tagline}
           </p>
-
-          <pre style={{
-            fontFamily: "'Courier New', monospace",
-            fontSize: "clamp(13px, 1.8vw, 16px)",
-            color: "#888", lineHeight: 2.1,
-            whiteSpace: "pre-wrap", margin: 0,
-            letterSpacing: "0.01em",
-          }}>
+          <pre style={{ fontFamily:"'Courier New',monospace", fontSize:"clamp(13px,1.8vw,16px)", color:"#888", lineHeight:2.1, whiteSpace:"pre-wrap", margin:0, letterSpacing:"0.01em" }}>
             {service.body}
           </pre>
-
-          {/* CTA */}
-          <div style={{ marginTop: "clamp(40px, 6vh, 64px)" }}>
+          <div style={{ marginTop:"clamp(40px,6vh,64px)", paddingBottom:"40px" }}>
             <a
               href="#contact"
               onClick={onClose}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: "10px",
-                padding: "12px 24px", border: `1px solid ${service.color}`,
-                color: service.color, borderRadius: "6px",
-                fontFamily: "'Courier New', monospace", fontSize: "13px",
-                letterSpacing: "0.06em", textDecoration: "none",
-                transition: "all 0.18s",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = service.color + "18"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
-            >
-              Talk to us about this →
-            </a>
+              style={{ display:"inline-flex", alignItems:"center", gap:"10px", padding:"12px 24px", border:`1px solid ${service.color}`, color:service.color, borderRadius:"6px", fontFamily:"'Courier New',monospace", fontSize:"13px", letterSpacing:"0.06em", textDecoration:"none", transition:"all 0.18s" }}
+              onMouseEnter={(e)=>{ e.currentTarget.style.background=service.color+"18"; }}
+              onMouseLeave={(e)=>{ e.currentTarget.style.background="transparent"; }}
+            >Talk to us about this →</a>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -256,15 +218,11 @@ const Services = () => {
 
   return (
     <>
-      <div
-        style={{ width: "100%", padding: "clamp(16px,3vw,28px)" }}
-        onClick={() => setOpen(null)}
-      >
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>
+      <div style={{ width:"100%", padding:"clamp(16px,3vw,28px)" }}>
+        <p style={{ color:"#333", fontSize:"10px", fontFamily:"'Courier New',monospace", letterSpacing:"0.1em", marginBottom:"clamp(16px,3vh,24px)", textTransform:"uppercase" }}>
           Services — {SERVICES.length} files
         </p>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: "8px" }}>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(100px,1fr))", gap:"8px" }}>
           {SERVICES.map((svc) => (
             <FileIcon
               key={svc.id}
@@ -277,8 +235,7 @@ const Services = () => {
           ))}
         </div>
       </div>
-
-      {open && <ServiceViewer service={open} onClose={() => setOpen(null)} />}
+      <ServiceViewer service={open} onClose={() => setOpen(null)} />
     </>
   );
 };

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #111; overflow: hidden; height: 100vh; }
+</style>
+</head>
+<body>
+
+<!-- Test 1: basic fixed div with scroll -->
+<div id="overlay" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0c0c0c;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+">
+  <!-- header that doesn't scroll -->
+  <div style="
+    flex-shrink: 0;
+    height: 56px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #888;
+    font-family: monospace;
+  ">
+    test / scroll_test — scroll the content below
+  </div>
+
+  <!-- THE scroll container -->
+  <div style="
+    flex: 1;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background: #0c0c0c;
+  ">
+    <!-- lots of content -->
+    <div style="padding: 40px 24px;">
+      <p style="color: #34d399; font-family: monospace; font-size: 18px; margin-bottom: 20px;">If you can scroll this on your phone — the approach works ✓</p>
+      <!-- generate 50 lines of content -->
+      <div id="content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const c = document.getElementById('content');
+for (let i = 1; i <= 60; i++) {
+  const p = document.createElement('p');
+  p.style.cssText = 'color: #555; font-family: monospace; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #1a1a1a;';
+  p.textContent = `Line ${i} — scroll down to see more content below this line`;
+  c.appendChild(p);
+}
+</script>
+</body>
+</html>

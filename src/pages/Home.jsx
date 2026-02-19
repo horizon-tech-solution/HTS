@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import PcIcon from "../components/PcIcon";
 import TrashIcon from "../components/TrashIcon";
-import MyPC from "../components/MyPc";
+import MyPC from "../components/MyPC";
 
 // ─── Config ────────────────────────────────────────────────────────────────────
 const STORAGE_KEY = "desktop_v5";
@@ -87,7 +87,11 @@ const useDraggable = () => {
       });
     };
     const onMM = (e) => move(e.clientX, e.clientY);
-    const onTM = (e) => { e.preventDefault(); move(e.touches[0].clientX, e.touches[0].clientY); };
+    const onTM = (e) => { 
+      if (!drag.current) return; // ← only block scroll when dragging an icon
+      e.preventDefault(); 
+      move(e.touches[0].clientX, e.touches[0].clientY); 
+    };
     const onUp = () => { drag.current = null; };
     window.addEventListener("mousemove",  onMM);
     window.addEventListener("mouseup",    onUp);
@@ -143,7 +147,7 @@ export default function Home() {
           100% { background-position: 0% 50%;   filter: hue-rotate(0deg); }
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body, #root { width: 100%; height: 100%; overflow: hidden; }
+        html, body, #root { width: 100%; height: 100%; overflow: hidden; touch-action: none; }
       `}</style>
 
       {/* Animated bg */}
@@ -164,7 +168,7 @@ export default function Home() {
       {/* Desktop */}
       <div
         onClick={() => setSelected(null)}
-        style={{ width: "100vw", height: "100vh", overflow: "hidden", position: "relative", userSelect: "none" }}
+        style={{ width: "100vw", height: "100vh", overflow: "hidden", position: "relative" }}
       >
         {/* Company name — centered on desktop */}
         <div style={{
@@ -181,7 +185,7 @@ export default function Home() {
             fontSize:      "clamp(11px, 1.4vw, 14px)",
             letterSpacing: "0.28em",
             textTransform: "uppercase",
-            color:         "rgba(14, 13, 13, 0.22)",
+            color:         "rgba(80, 80, 80, 0.22)",
             marginBottom:  "10px",
           }}>
             Welcome to
@@ -192,14 +196,58 @@ export default function Home() {
             fontWeight:    "normal",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color:         "rgba(0, 0, 0, 0.13)",
+            color:         "rgba(60, 60, 60, 0.13)",
             lineHeight:    1.2,
             margin:        0,
           }}>
-            Horizon<br />Tech Solution
+            Horizont<br />Tech Solution
           </h1>
         </div>
-        
+        {/* Centered company name */}
+        <div style={{
+          position:       "absolute",
+          top:            "50%",
+          left:           "50%",
+          transform:      "translate(-50%, -50%)",
+          textAlign:      "center",
+          pointerEvents:  "none",
+          zIndex:         1,
+          display:        "flex",
+          flexDirection:  "column",
+          alignItems:     "center",
+          gap:            "10px",
+        }}>
+          <span style={{
+            fontFamily:    "'Courier New', monospace",
+            fontSize:      "clamp(11px, 1.4vw, 15px)",
+            letterSpacing: "0.35em",
+            textTransform: "uppercase",
+            color:         "rgba(80, 80, 80, 0.35)",
+            fontWeight:    "normal",
+          }}>
+            Horizont
+          </span>
+          <span style={{
+            fontFamily:    "'Courier New', monospace",
+            fontSize:      "clamp(28px, 5.5vw, 64px)",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color:         "rgba(30, 30, 30, 0.12)",
+            fontWeight:    "bold",
+            lineHeight:    1,
+          }}>
+            Tech
+          </span>
+          <span style={{
+            fontFamily:    "'Courier New', monospace",
+            fontSize:      "clamp(11px, 1.4vw, 15px)",
+            letterSpacing: "0.45em",
+            textTransform: "uppercase",
+            color:         "rgba(80, 80, 80, 0.28)",
+          }}>
+            Solution
+          </span>
+        </div>
         {icons.map(({ id, node }) => {
           const isSel = selected === id;
           return (

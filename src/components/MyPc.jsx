@@ -8,7 +8,6 @@ import Contact  from "../pages/Contact";
 import Careers  from "../pages/Careers";
 import Projects from "../pages/Projects";
 
-// ─── Sections ──────────────────────────────────────────────────────────────────
 export const SECTIONS = [
   { id: "services", label: "Services",  color: "#60a5fa", desc: "What we build",   component: <Services /> },
   { id: "about",    label: "About Us",  color: "#a78bfa", desc: "Our story",       component: <About />    },
@@ -17,7 +16,6 @@ export const SECTIONS = [
   { id: "careers",  label: "Careers",   color: "#fbbf24", desc: "Join us",         component: <Careers />  },
 ];
 
-// ─── URL helpers ───────────────────────────────────────────────────────────────
 const setUrlParam = (key, value) => {
   const url = new URL(window.location.href);
   if (value) url.searchParams.set(key, value);
@@ -26,18 +24,16 @@ const setUrlParam = (key, value) => {
 };
 const getUrlParam = (key) => new URL(window.location.href).searchParams.get(key);
 
-// ─── Hook: detect mobile ───────────────────────────────────────────────────────
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
   useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 640);
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
+    const h = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
   }, []);
   return isMobile;
 };
 
-// ─── MyPC ──────────────────────────────────────────────────────────────────────
 const MyPC = ({ onClose }) => {
   const isMobile = useIsMobile();
 
@@ -67,7 +63,6 @@ const MyPC = ({ onClose }) => {
     setUrlParam("folder", currentSection?.id ?? "");
   }, [path, currentSection]);
 
-  // ── Window drag ──
   const handleTitleMouseDown = (e) => {
     if (maximized || isMobile) return;
     const rect = winRef.current.getBoundingClientRect();
@@ -82,10 +77,9 @@ const MyPC = ({ onClose }) => {
     };
     const onUp = () => { dragging.current = null; window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
+    window.addEventListener("mouseup",   onUp);
   };
 
-  // ── Navigation ──
   const navigate = (newPath) => {
     const next = [...pathHistory.slice(0, histIdx + 1), newPath];
     setPathHistory(next); setHistIdx(next.length - 1);
@@ -104,7 +98,6 @@ const MyPC = ({ onClose }) => {
     s.desc.toLowerCase().includes(search.toLowerCase())
   );
 
-  // ─── Shared sidebar items ───────────────────────────────────────────────────
   const sidebarItems = [
     { label: "HTS", icon: "🖥", path: ["HTS"], color: "#4a90e2" },
     ...SECTIONS.map((s) => ({ label: s.label, icon: "📁", path: ["HTS", s.label], color: s.color })),
@@ -131,7 +124,6 @@ const MyPC = ({ onClose }) => {
     </>
   );
 
-  // ─── Window sizing ──────────────────────────────────────────────────────────
   const winStyle = isMobile
     ? { position: "fixed", inset: 0, width: "100dvw", height: "100dvh", borderRadius: 0, transform: "none", left: 0, top: 0 }
     : maximized
@@ -154,16 +146,16 @@ const MyPC = ({ onClose }) => {
         style={{
           ...winStyle,
           background: "#1a1a1a",
-          border: isMobile ? "none" : "1px solid #2e2e2e",
-          boxShadow: isMobile ? "none" : "0 32px 90px rgba(0,0,0,0.65)",
-          display: "flex", flexDirection: "column",
-          overflow: "hidden", pointerEvents: "all",
-          userSelect: isMobile ? "auto" : "none",
-          touchAction: "pan-y",
+          border:     isMobile ? "none" : "1px solid #2e2e2e",
+          boxShadow:  isMobile ? "none" : "0 32px 90px rgba(0,0,0,0.65)",
+          display:    "flex",
+          flexDirection: "column",
+          // ✅ NO overflow:hidden — it kills iOS touch scroll on all children
+          pointerEvents: "all",
         }}
       >
-        {/* ── Title bar ── */}
-        <div onMouseDown={handleTitleMouseDown} style={{ cursor: (maximized || isMobile) ? "default" : "move" }}>
+        {/* Title bar */}
+        <div onMouseDown={handleTitleMouseDown} style={{ flexShrink: 0, cursor: (maximized || isMobile) ? "default" : "move" }}>
           <Header
             title={isRoot ? "HTS" : currentSection?.label ?? "HTS"}
             onClose={handleClose}
@@ -175,21 +167,13 @@ const MyPC = ({ onClose }) => {
           />
         </div>
 
-        {/* ── Nav bar ── */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+        {/* Nav bar */}
+        <div style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
           {isMobile && (
             <button
               onClick={() => setSidebarOpen((o) => !o)}
-              style={{
-                flexShrink: 0, background: "none", border: "none",
-                color: sidebarOpen ? "#aaa" : "#555",
-                fontSize: 18, lineHeight: 1, cursor: "pointer",
-                padding: "0 10px", fontFamily: "monospace",
-                WebkitTapHighlightColor: "transparent",
-              }}
-            >
-              ☰
-            </button>
+              style={{ flexShrink: 0, background: "none", border: "none", color: sidebarOpen ? "#aaa" : "#555", fontSize: 18, lineHeight: 1, cursor: "pointer", padding: "0 10px", fontFamily: "monospace", WebkitTapHighlightColor: "transparent" }}
+            >☰</button>
           )}
           <div style={{ flex: 1 }}>
             <Nav
@@ -202,15 +186,18 @@ const MyPC = ({ onClose }) => {
           </div>
         </div>
 
-        {/* ── Body ── */}
-        <div style={{ display: "flex", flex: 1, overflow: "hidden", position: "relative" }}>
+        {/* Body — ✅ NO overflow:hidden here */}
+        <div style={{ display: "flex", flex: 1, minHeight: 0, position: "relative" }}>
 
-          {/* ── Sidebar ── */}
-          {!isMobile ? (
+          {/* Sidebar desktop */}
+          {!isMobile && (
             <div style={{ width: "180px", flexShrink: 0, background: "#161616", borderRight: "1px solid #252525", padding: "14px 0", overflowY: "auto" }}>
               <SidebarContent />
             </div>
-          ) : (
+          )}
+
+          {/* Sidebar mobile */}
+          {isMobile && (
             <>
               {sidebarOpen && (
                 <div onClick={() => setSidebarOpen(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 10 }} />
@@ -229,32 +216,33 @@ const MyPC = ({ onClose }) => {
             </>
           )}
 
-          {/* ── Main pane ── */}
+          {/* ✅ Main pane — the ONE scroll container, no overflow:hidden anywhere above it */}
           <div
-            style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column", touchAction: "pan-y" }}
-            onClick={() => { setSelected(null); if (isMobile) setSidebarOpen(false); }}
+            style={{
+              flex:      1,
+              minHeight: 0,
+              overflowY: "auto",
+              overflowX: "hidden",
+              WebkitOverflowScrolling: "touch",
+              display:   "flex",
+              flexDirection: "column",
+            }}
           >
-            {/* ROOT — single click opens folder on both desktop and mobile */}
+            {/* ROOT */}
             {isRoot && (
-              <div style={{ flex: 1, overflowY: "auto", padding: isMobile ? "14px" : "20px" }}>
+              <div
+                style={{ padding: isMobile ? "14px" : "20px" }}
+                onClick={() => { setSelected(null); if (isMobile) setSidebarOpen(false); }}
+              >
                 <p style={{ color: "#e0e0e0", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "18px", textTransform: "uppercase" }}>
                   {search ? `Results for "${search}"` : `Sections (${SECTIONS.length})`}
                 </p>
                 {filtered.length === 0 ? (
                   <p style={{ color: "#444", fontSize: "13px", fontFamily: "'Courier New', monospace", textAlign: "center", marginTop: "60px" }}>No results.</p>
                 ) : viewMode === "grid" ? (
-                  <div style={{
-                    display: "grid",
-                    gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(auto-fill, minmax(120px, 1fr))",
-                    gap: isMobile ? "6px" : "8px",
-                  }}>
+                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(auto-fill, minmax(120px, 1fr))", gap: isMobile ? "6px" : "8px" }}>
                     {filtered.map((sec) => (
-                      <FolderIcon
-                        key={sec.id}
-                        color={sec.color}
-                        size={isMobile ? 58 : 76}
-                        label={sec.label}
-                        selected={selected === sec.id}
+                      <FolderIcon key={sec.id} color={sec.color} size={isMobile ? 58 : 76} label={sec.label} selected={selected === sec.id}
                         onClick={(e) => { e.stopPropagation(); openSection(sec); }}
                       />
                     ))}
@@ -262,17 +250,9 @@ const MyPC = ({ onClose }) => {
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                     {filtered.map((sec) => (
-                      <div
-                        key={sec.id}
+                      <div key={sec.id}
                         onClick={(e) => { e.stopPropagation(); openSection(sec); }}
-                        style={{
-                          display: "flex", alignItems: "center", gap: "12px",
-                          padding: isMobile ? "11px 12px" : "8px 12px",
-                          borderRadius: "6px",
-                          background: "transparent", border: "1px solid transparent",
-                          cursor: "pointer", transition: "background 0.1s",
-                          WebkitTapHighlightColor: "transparent",
-                        }}
+                        style={{ display: "flex", alignItems: "center", gap: "12px", padding: isMobile ? "11px 12px" : "8px 12px", borderRadius: "6px", background: "transparent", border: "1px solid transparent", cursor: "pointer", transition: "background 0.1s", WebkitTapHighlightColor: "transparent" }}
                         onMouseEnter={(e) => { e.currentTarget.style.background = "#222"; }}
                         onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
                       >
@@ -287,16 +267,12 @@ const MyPC = ({ onClose }) => {
               </div>
             )}
 
-            {/* INSIDE FOLDER with component */}
-            {!isRoot && hasComponent && (
-              <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y", display: "flex", flexDirection: "column" }}>
-                {currentSection.component}
-              </div>
-            )}
+            {/* INSIDE FOLDER */}
+            {!isRoot && hasComponent && currentSection.component}
 
-            {/* INSIDE FOLDER — no component yet */}
+            {/* INSIDE FOLDER — no component */}
             {!isRoot && !hasComponent && (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: "14px", padding: "40px" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1, gap: "14px", padding: "40px" }}>
                 <FolderIcon color={currentSection?.color ?? "#888"} size={isMobile ? 72 : 90} label="" onClick={() => {}} />
                 <p style={{ color: "#555", fontSize: "14px", fontFamily: "'Courier New', monospace" }}>{currentSection?.label}</p>
                 <p style={{ color: "#333", fontSize: "12px", fontFamily: "'Courier New', monospace" }}>{currentSection?.desc}</p>
@@ -310,7 +286,7 @@ const MyPC = ({ onClose }) => {
             const sec = SECTIONS.find((s) => s.id === selected);
             if (!sec) return null;
             return (
-              <div style={{ width: "185px", flexShrink: 0, background: "#161616", borderLeft: "1px solid #252525", padding: "20px 14px", display: "flex", flexDirection: "column", gap: "12px" }}>
+              <div style={{ width: "185px", flexShrink: 0, background: "#161616", borderLeft: "1px solid #252525", padding: "20px 14px", display: "flex", flexDirection: "column", gap: "12px", overflowY: "auto" }}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <FolderIcon color={sec.color} size={66} label="" onClick={() => {}} />
                 </div>
@@ -328,9 +304,7 @@ const MyPC = ({ onClose }) => {
                     style={{ marginTop: "auto", padding: "8px", border: "1px solid #2e2e2e", background: "#202020", color: "#bbb", borderRadius: "6px", fontSize: "12px", fontFamily: "'Courier New', monospace", cursor: "pointer", transition: "all 0.12s" }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = "#2a2a2a"; e.currentTarget.style.color = "#fff"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = "#202020"; e.currentTarget.style.color = "#bbb"; }}
-                  >
-                    Open →
-                  </button>
+                  >Open →</button>
                 )}
               </div>
             );
@@ -338,7 +312,7 @@ const MyPC = ({ onClose }) => {
         </div>
 
         {/* Status bar */}
-        <div style={{ height: "30px", background: "#141414", borderTop: "1px solid #252525", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", flexShrink: 0 }}>
+        <div style={{ flexShrink: 0, height: "30px", background: "#141414", borderTop: "1px solid #252525", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px" }}>
           <span style={{ color: "#3a3a3a", fontSize: "11px", fontFamily: "'Courier New', monospace" }}>
             {isRoot ? `${filtered.length} item${filtered.length !== 1 ? "s" : ""}` : currentSection?.label}
           </span>

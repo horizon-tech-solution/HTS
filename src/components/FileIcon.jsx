@@ -12,16 +12,12 @@ const FileIcon = ({ label = "file", size = 72, selected, onClick, color = "#a78b
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onTouchStart={() => setHovered(true)}
-      onTouchEnd={() => setHovered(false)}
       style={{
         display:       "flex",
         flexDirection: "column",
         alignItems:    "center",
         gap:           "10px",
-        cursor:        "default",
-        userSelect:    "none",
-        WebkitUserSelect: "none",
+        cursor:        "pointer",
         padding:       "10px 8px",
         borderRadius:  "10px",
         background:    selected ? `${color}18` : active ? "rgba(255,255,255,0.04)" : "transparent",
