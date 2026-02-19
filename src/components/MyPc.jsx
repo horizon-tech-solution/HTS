@@ -6,14 +6,14 @@ import About    from "../pages/About";
 import Services from "../pages/Services";
 import Contact  from "../pages/Contact";
 import Careers  from "../pages/Careers";
+import Projects from "../pages/Projects";
 
 // ─── Sections ──────────────────────────────────────────────────────────────────
 export const SECTIONS = [
   { id: "services", label: "Services",  color: "#60a5fa", desc: "What we build",   component: <Services /> },
   { id: "about",    label: "About Us",  color: "#a78bfa", desc: "Our story",       component: <About />    },
-  { id: "projects", label: "Projects",  color: "#34d399", desc: "Our work",        component: null         },
+  { id: "projects", label: "Projects", color: "#34d399", desc: "Our work", component: <Projects /> },
   { id: "contact",  label: "Contact",   color: "#fb923c", desc: "Get in touch",    component: <Contact />  },
-  { id: "team",     label: "Our Team",  color: "#f472b6", desc: "Who we are",      component: null         },
   { id: "careers",  label: "Careers",   color: "#fbbf24", desc: "Join us",         component: <Careers />  },
 ];
 
@@ -240,7 +240,7 @@ const MyPC = ({ onClose }) => {
             {/* ROOT */}
             {isRoot && (
               <div style={{ flex: 1, overflowY: "auto", padding: isMobile ? "14px" : "20px" }}>
-                <p style={{ color: "#3a3a3a", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "18px", textTransform: "uppercase" }}>
+                <p style={{ color: "#e0e0e0", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "18px", textTransform: "uppercase" }}>
                   {search ? `Results for "${search}"` : `Sections (${SECTIONS.length})`}
                 </p>
                 {filtered.length === 0 ? (

@@ -209,7 +209,7 @@ const JobViewer = ({ job, onClose }) => (
         <pre style={{
           fontFamily: "'Courier New', monospace",
           fontSize: "clamp(14px, 2vw, 18px)",
-          color: "#aaa", lineHeight: 2, whiteSpace: "pre-wrap",
+          color: "#ffffff", lineHeight: 2, whiteSpace: "pre-wrap",
           margin: 0, borderLeft: `2px solid ${job.color}`,
           paddingLeft: "20px",
         }}>
@@ -220,7 +220,7 @@ const JobViewer = ({ job, onClose }) => (
         <pre style={{
           fontFamily: "'Courier New', monospace",
           fontSize: "clamp(12px, 1.6vw, 14px)",
-          color: "#666", lineHeight: 2.1,
+          color: "#ffffff", lineHeight: 2.1,
           whiteSpace: "pre-wrap", margin: 0, letterSpacing: "0.01em",
         }}>
           {job.body}
@@ -228,10 +228,10 @@ const JobViewer = ({ job, onClose }) => (
 
         {/* Apply CTA */}
         <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "28px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p style={{ color: "#3a3a3a", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ color: "#ffffff", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             How to apply
           </p>
-          <p style={{ color: "#666", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
+          <p style={{ color: "#ffffff", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
             Send your CV and a short note about why this role to:
           </p>
           <a
@@ -274,7 +274,7 @@ const Careers = () => {
         style={{ width: "100%", height: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)", display: "flex", flexDirection: "column", gap: "clamp(20px,4vh,28px)" }}
         onClick={() => setSelected(null)}
       >
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+        <p style={{ color: "#ffffff", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
           Careers — {OPENINGS.length} open roles
         </p>
 
@@ -296,7 +296,7 @@ const Careers = () => {
 
         {/* Job files */}
         <div>
-          <p style={{ color: "#2e2e2e", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
+          <p style={{ color: "#fcfbfb", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
             open_positions/
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: "8px" }}>
@@ -315,7 +315,7 @@ const Careers = () => {
           </div>
         </div>
 
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em" }}>
+        <p style={{ color: "#ccc7c7", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em" }}>
           double-click a role to read and apply
         </p>
       </div>

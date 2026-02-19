@@ -232,14 +232,14 @@ export default function Home() {
               </span>
             ))}
           </nav>
-          <div style={{ flex: 1, textAlign: "right" }}>
+          {/* <div style={{ flex: 1, textAlign: "right" }}>
             <span style={{ color: "#666", fontSize: "clamp(11px,1.2vw,13px)", fontFamily: "'Courier New', monospace", letterSpacing: "0.05em" }}>
               {fmtTime(time)}
             </span>
             <span style={{ color: "#bbb", fontSize: "clamp(10px,1vw,11px)", fontFamily: "'Courier New', monospace", marginLeft: "7px" }}>
               {fmtDate(time)}
             </span>
-          </div>
+          </div> */}
         </footer>
       </div>
     </>
