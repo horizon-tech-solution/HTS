@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FolderIcon from "../components/FolderIcon";
 import FileIcon   from "../components/FileIcon";
-import Homi       from "../projects/Homi";
+import Homi       from "./projects/Homi";
 
 // ─── Projects registry ─────────────────────────────────────────────────────────
 // Add new projects here. Each gets a folder. Files inside open a component.
