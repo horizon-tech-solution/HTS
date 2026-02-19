@@ -5,8 +5,8 @@ import { useState } from "react";
 // Replace CONTACT_INFO with real details
 
 const CONTACT_INFO = {
-  email:    "hello@yourcompany.com",
-  location: "Your City, Country",
+  email:    "horizontechsolution680@gmail.com",
+  location: "Cameroon",
   response: "We respond within 24 hours.",
 };
 
@@ -79,7 +79,7 @@ const Contact = () => {
         <p style={{ color: "#34d399", fontFamily: "'Courier New', monospace", fontSize: "14px", letterSpacing: "0.06em" }}>
           message_sent.ok
         </p>
-        <p style={{ color: "#444", fontFamily: "'Courier New', monospace", fontSize: "12px", textAlign: "center" }}>
+        <p style={{ color: "#dadada", fontFamily: "'Courier New', monospace", fontSize: "12px", textAlign: "center" }}>
           {CONTACT_INFO.response}
         </p>
         <button
@@ -107,7 +107,7 @@ const Contact = () => {
       padding: "clamp(16px, 3vw, 28px)",
       display: "flex", flexDirection: "column", gap: "clamp(20px, 4vh, 32px)",
     }}>
-      <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+      <p style={{ color: "#ffffff", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
         Contact — contact.form
       </p>
 
@@ -119,10 +119,10 @@ const Contact = () => {
           { label: "response", value: CONTACT_INFO.response },
         ].map(({ label, value }) => (
           <div key={label}>
-            <p style={{ color: "#2e2e2e", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "3px" }}>
+            <p style={{ color: "#919191", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "3px" }}>
               {label}
             </p>
-            <p style={{ color: "#666", fontSize: "clamp(10px, 1.3vw, 12px)", fontFamily: "'Courier New', monospace" }}>
+            <p style={{ color: "#c4c4c4", fontSize: "clamp(10px, 1.3vw, 12px)", fontFamily: "'Courier New', monospace" }}>
               {value}
             </p>
           </div>
@@ -137,7 +137,7 @@ const Contact = () => {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "clamp(14px, 2vw, 22px)" }}>
           {FIELDS.map(({ id, label, type, placeholder, required }) => (
             <div key={id}>
-              <label style={{ display: "block", color: errors[id] ? "#f87171" : "#3a3a3a", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>
+              <label style={{ display: "block", color: errors[id] ? "#f87171" : "#5e5e5e", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>
                 {label}{required ? " *" : ""}
                 {errors[id] && <span style={{ marginLeft: "8px", color: "#f87171" }}>— {errors[id]}</span>}
               </label>

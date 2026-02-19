@@ -7,7 +7,7 @@ const COMPANY_NAME = "Your Company";
 const OPENINGS = [
   {
     id:       "fullstack",
-    label:    "fullstack_dev.role",
+    label:    "fullstack_dev",
     color:    "#60a5fa",
     title:    "Full-Stack Developer",
     type:     "Full-time · Remote",
@@ -40,7 +40,7 @@ What we're looking for:
   },
   {
     id:       "backend",
-    label:    "backend_engineer.role",
+    label:    "backend_engineer",
     color:    "#34d399",
     title:    "Backend Engineer",
     type:     "Full-time · Remote",
@@ -71,7 +71,7 @@ What we're looking for:
   },
   {
     id:       "designer",
-    label:    "ui_ux_designer.role",
+    label:    "ui_ux_designer",
     color:    "#f472b6",
     title:    "UI/UX Designer",
     type:     "Full-time · Remote",
@@ -103,7 +103,7 @@ What we're looking for:
   },
   {
     id:       "sales",
-    label:    "business_dev.role",
+    label:    "business_dev",
     color:    "#fbbf24",
     title:    "Business Development",
     type:     "Full-time · Remote / Hybrid",
@@ -205,7 +205,7 @@ const JobViewer = ({ job, onClose }) => (
           <p style={{ color: job.color, fontFamily: "'Courier New', monospace", fontSize: "12px", letterSpacing: "0.08em", marginBottom: "6px" }}>
             {job.type}
           </p>
-          <p style={{ color: "#3a3a3a", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.06em" }}>
+          <p style={{ color: "#c2c2c2", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.06em" }}>
             {job.stack}
           </p>
         </div>
@@ -225,7 +225,7 @@ const JobViewer = ({ job, onClose }) => (
         <pre style={{
           fontFamily: "'Courier New', monospace",
           fontSize: "clamp(12px, 1.6vw, 14px)",
-          color: "#666", lineHeight: 2.1,
+          color: "#c5c5c5", lineHeight: 2.1,
           whiteSpace: "pre-wrap", margin: 0, letterSpacing: "0.01em",
         }}>
           {job.body}
@@ -233,10 +233,10 @@ const JobViewer = ({ job, onClose }) => (
 
         {/* Apply CTA */}
         <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "28px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p style={{ color: "#3a3a3a", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ color: "#dbd8d8", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             How to apply
           </p>
-          <p style={{ color: "#666", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
+          <p style={{ color: "#d4d4d4", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
             Send your CV and a short note about why this role to:
           </p>
           <a
@@ -271,7 +271,7 @@ const Careers = () => {
         style={{ width: "100%", padding: "clamp(16px,3vw,28px)", display: "flex", flexDirection: "column", gap: "clamp(20px,4vh,28px)" }}
         onClick={() => setSelected(null)}
       >
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+        <p style={{ color: "#cacaca", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
           Careers — {OPENINGS.length} open roles
         </p>
 
@@ -281,11 +281,11 @@ const Careers = () => {
           borderRadius: "8px", padding: "clamp(14px,2.5vw,20px)",
           display: "flex", flexDirection: "column", gap: "8px",
         }}>
-          <p style={{ color: "#3a3a3a", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>
-            how_we_work.txt
+          <p style={{ color: "#cfcfcf", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>
+            how_we_work
           </p>
           {CULTURE_NOTES.map((note, i) => (
-            <p key={i} style={{ color: "#555", fontSize: "clamp(10px,1.3vw,12px)", fontFamily: "'Courier New', monospace", lineHeight: 1.7 }}>
+            <p key={i} style={{ color: "#c2c2c2", fontSize: "clamp(10px,1.3vw,12px)", fontFamily: "'Courier New', monospace", lineHeight: 1.7 }}>
               <span style={{ color: "#2e2e2e", marginRight: "8px" }}>→</span>{note}
             </p>
           ))}
@@ -293,7 +293,7 @@ const Careers = () => {
 
         {/* Job files */}
         <div>
-          <p style={{ color: "#2e2e2e", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
+          <p style={{ color: "#ffffff", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
             open_positions/
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: "8px" }}>
@@ -310,9 +310,7 @@ const Careers = () => {
           </div>
         </div>
 
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em" }}>
-          double-click hint removed — click to open
-        </p>
+        
       </div>
 
       {open && <JobViewer job={open} onClose={() => setOpen(null)} />}

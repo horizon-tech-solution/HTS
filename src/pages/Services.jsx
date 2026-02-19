@@ -166,7 +166,7 @@ const ServiceViewer = ({ service, onClose }) => {
         background:  "#0c0c0c",
         borderBottom:"1px solid #1a1a1a",
       }}>
-        <span style={{ color:"#444", fontSize:"11px", fontFamily:"'Courier New',monospace", letterSpacing:"0.08em" }}>
+        <span style={{ color:"#cecece", fontSize:"11px", fontFamily:"'Courier New',monospace", letterSpacing:"0.08em" }}>
           services / {service.label}
         </span>
         <button
@@ -219,7 +219,7 @@ const Services = () => {
   return (
     <>
       <div style={{ width:"100%", padding:"clamp(16px,3vw,28px)" }}>
-        <p style={{ color:"#333", fontSize:"10px", fontFamily:"'Courier New',monospace", letterSpacing:"0.1em", marginBottom:"clamp(16px,3vh,24px)", textTransform:"uppercase" }}>
+        <p style={{ color:"#cacaca", fontSize:"10px", fontFamily:"'Courier New',monospace", letterSpacing:"0.1em", marginBottom:"clamp(16px,3vh,24px)", textTransform:"uppercase" }}>
           Services — {SERVICES.length} files
         </p>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(100px,1fr))", gap:"8px" }}>

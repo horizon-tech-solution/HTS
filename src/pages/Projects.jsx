@@ -14,7 +14,7 @@ const PROJECTS = [
     files: [
       {
         id:        "homi-project",
-        label:     "homi.project",
+        label:     "homi",
         color:     "#34d399",
         component: Homi,
       },
@@ -51,7 +51,7 @@ const Projects = () => {
         style={{ width: "100%", minHeight: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-y", padding: "clamp(16px,3vw,28px)" }}
         onClick={() => setSelected(null)}
       >
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>
+        <p style={{ color: "#dfdbdb", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>
           Projects — {PROJECTS.length} folder{PROJECTS.length !== 1 ? "s" : ""}
         </p>
 
@@ -97,7 +97,7 @@ const Projects = () => {
           <button
             onClick={() => { setOpenFolder(null); setSelected(null); }}
             style={{
-              background: "transparent", border: "none", color: "#555",
+              background: "transparent", border: "none", color: "#e0e0e0",
               fontFamily: "'Courier New', monospace", fontSize: "11px",
               letterSpacing: "0.06em", cursor: "pointer", padding: "0",
               transition: "color 0.15s", WebkitTapHighlightColor: "transparent",
@@ -107,13 +107,13 @@ const Projects = () => {
           >
             ← projects
           </button>
-          <span style={{ color: "#2a2a2a", fontFamily: "'Courier New', monospace", fontSize: "11px" }}>/</span>
-          <span style={{ color: "#888", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.04em" }}>
+          <span style={{ color: "#bbbbbb", fontFamily: "'Courier New', monospace", fontSize: "11px" }}>/</span>
+          <span style={{ color: "#dbdbdb", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.04em" }}>
             {currentProject.label}
           </span>
         </div>
 
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(14px,2.5vh,20px)", textTransform: "uppercase" }}>
+        <p style={{ color: "#d8d8d8", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(14px,2.5vh,20px)", textTransform: "uppercase" }}>
           {currentProject.label} — {currentProject.files.length} file{currentProject.files.length !== 1 ? "s" : ""}
         </p>
 

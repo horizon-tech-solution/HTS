@@ -133,7 +133,7 @@ export default function Home() {
   };
 
   const icons = [
-    { id: "pc",    node: <PcIcon    label="Horizont Tech"  onClick={openPC} /> },
+    { id: "pc",    node: <PcIcon    label="Horizon Tech Solution"  onClick={openPC} /> },
     { id: "trash", node: <TrashIcon label="Recycle Bin" isEmpty onClick={() => {}} /> },
   ];
 
@@ -154,12 +154,12 @@ export default function Home() {
       <div style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundImage: `
-          radial-gradient(ellipse at 18% 28%,  rgba(210,228,255,0.92) 0%, transparent 52%),
-          radial-gradient(ellipse at 82% 72%,  rgba(255,242,222,0.92) 0%, transparent 52%),
-          radial-gradient(ellipse at 52% 2%,   rgba(222,255,238,0.78) 0%, transparent 48%),
-          radial-gradient(ellipse at 5%  92%,  rgba(255,228,248,0.78) 0%, transparent 48%),
-          radial-gradient(ellipse at 95% 8%,   rgba(235,222,255,0.72) 0%, transparent 46%),
-          linear-gradient(140deg, #dbeeff 0%, #fffaf0 38%, #eafff4 68%, #f9e8ff 100%)
+          radial-gradient(ellipse at 18% 28%,  rgba(126, 166, 226, 0.92) 0%, transparent 52%),
+          radial-gradient(ellipse at 82% 72%,  rgba(235, 170, 72, 0.92) 0%, transparent 52%),
+          radial-gradient(ellipse at 52% 2%,   rgba(88, 240, 161, 0.78) 0%, transparent 48%),
+          radial-gradient(ellipse at 5%  92%,  hsla(175, 61%, 46%, 0.78) 0%, transparent 48%),
+          radial-gradient(ellipse at 95% 8%,   rgba(82, 79, 247, 0.72) 0%, transparent 46%),
+          linear-gradient(140deg, #c3dff8 0%, #f5e1b8 38%, #a9f0cb 68%, #e39ffc 100%)
         `,
         backgroundSize: "380% 380%",
         animation: "bgDrift 16s ease infinite",
@@ -185,7 +185,7 @@ export default function Home() {
             fontSize:      "clamp(11px, 1.4vw, 14px)",
             letterSpacing: "0.28em",
             textTransform: "uppercase",
-            color:         "rgba(80, 80, 80, 0.22)",
+            color:         "rgba(0, 0, 0, 0.22)",
             marginBottom:  "10px",
           }}>
             Welcome to
@@ -196,58 +196,14 @@ export default function Home() {
             fontWeight:    "normal",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color:         "rgba(60, 60, 60, 0.13)",
+            color:         "rgba(0, 0, 0, 0.13)",
             lineHeight:    1.2,
             margin:        0,
           }}>
-            Horizont<br />Tech Solution
+            Horizon<br />Tech Solution
           </h1>
         </div>
-        {/* Centered company name */}
-        <div style={{
-          position:       "absolute",
-          top:            "50%",
-          left:           "50%",
-          transform:      "translate(-50%, -50%)",
-          textAlign:      "center",
-          pointerEvents:  "none",
-          zIndex:         1,
-          display:        "flex",
-          flexDirection:  "column",
-          alignItems:     "center",
-          gap:            "10px",
-        }}>
-          <span style={{
-            fontFamily:    "'Courier New', monospace",
-            fontSize:      "clamp(11px, 1.4vw, 15px)",
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-            color:         "rgba(80, 80, 80, 0.35)",
-            fontWeight:    "normal",
-          }}>
-            Horizont
-          </span>
-          <span style={{
-            fontFamily:    "'Courier New', monospace",
-            fontSize:      "clamp(28px, 5.5vw, 64px)",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color:         "rgba(30, 30, 30, 0.12)",
-            fontWeight:    "bold",
-            lineHeight:    1,
-          }}>
-            Tech
-          </span>
-          <span style={{
-            fontFamily:    "'Courier New', monospace",
-            fontSize:      "clamp(11px, 1.4vw, 15px)",
-            letterSpacing: "0.45em",
-            textTransform: "uppercase",
-            color:         "rgba(80, 80, 80, 0.28)",
-          }}>
-            Solution
-          </span>
-        </div>
+        
         {icons.map(({ id, node }) => {
           const isSel = selected === id;
           return (
@@ -302,7 +258,7 @@ export default function Home() {
                 <a
                   href={href} target="_blank" rel="noopener noreferrer"
                   style={{
-                    color: "#999", fontSize: "clamp(11px,1.3vw,13px)",
+                    color: "#2c2c2c", fontSize: "clamp(11px,1.3vw,13px)",
                     letterSpacing: "0.07em", textDecoration: "none",
                     padding: "0 clamp(7px,1.4vw,16px)",
                     fontFamily: "'Courier New', monospace", transition: "color 0.2s",
@@ -313,16 +269,16 @@ export default function Home() {
                   {label}
                 </a>
                 {i < SOCIAL.length - 1 && (
-                  <span style={{ color: "#ddd", fontFamily: "'Courier New', monospace", fontSize: "clamp(11px,1.3vw,13px)" }}>/</span>
+                  <span style={{ color: "#1b1b1b", fontFamily: "'Courier New', monospace", fontSize: "clamp(11px,1.3vw,13px)" }}>/</span>
                 )}
               </span>
             ))}
           </nav>
           <div style={{ flex: 1, textAlign: "right" }}>
-            <span style={{ color: "#666", fontSize: "clamp(11px,1.2vw,13px)", fontFamily: "'Courier New', monospace", letterSpacing: "0.05em" }}>
+            <span style={{ color: "#222222", fontSize: "clamp(11px,1.2vw,13px)", fontFamily: "'Courier New', monospace", letterSpacing: "0.05em" }}>
               {fmtTime(time)}
             </span>
-            <span style={{ color: "#bbb", fontSize: "clamp(10px,1vw,11px)", fontFamily: "'Courier New', monospace", marginLeft: "7px" }}>
+            <span style={{ color: "#070707", fontSize: "clamp(10px,1vw,11px)", fontFamily: "'Courier New', monospace", marginLeft: "7px" }}>
               {fmtDate(time)}
             </span>
           </div>
