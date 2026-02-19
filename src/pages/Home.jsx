@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import PcIcon from "../components/PcIcon";
 import TrashIcon from "../components/TrashIcon";
-import MyPC from "../components/MyPC";
+import MyPC from "../components/MyPc";
 
 // ─── Config ────────────────────────────────────────────────────────────────────
 const STORAGE_KEY = "desktop_v5";
