@@ -14,7 +14,7 @@ const PROJECTS = [
     files: [
       {
         id:        "homi-project",
-        label:     "homi.project",
+        label:     "homi",
         color:     "#34d399",
         component: Homi,
       },

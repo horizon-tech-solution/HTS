@@ -28,7 +28,7 @@ const Homi = ({ onClose }) => {
           color: "#2e2e2e", fontSize: "11px",
           fontFamily: "'Courier New', monospace", letterSpacing: "0.08em",
         }}>
-          projects / homi / homi.project
+          projects / homi / homi
         </span>
         <button
           onClick={onClose}

@@ -5,7 +5,7 @@ import FileIcon from "../components/FileIcon";
 const SERVICES = [
   {
     id:    "custom-software",
-    label: "custom_software.exe",
+    label: "custom_software",
     color: "#60a5fa",
     title: "Custom Software Development",
     tagline: "Built for your problem. Not someone else's.",
@@ -27,7 +27,7 @@ scales to millions — we engineer it right.
   },
   {
     id:    "automation",
-    label: "automation.bat",
+    label: "automation",
     color: "#34d399",
     title: "Business Process Automation",
     tagline: "Stop paying people to do what machines can do better.",
@@ -49,7 +49,7 @@ and a team that moves faster.
   },
   {
     id:    "analytics",
-    label: "analytics.db",
+    label: "analytics",
     color: "#fbbf24",
     title: "Data & Analytics Solutions",
     tagline: "You have the data. We make it useful.",
@@ -71,7 +71,7 @@ It becomes a competitive advantage.
   },
   {
     id:    "saas",
-    label: "saas_product.app",
+    label: "saas_product",
     color: "#a78bfa",
     title: "SaaS Product Development",
     tagline: "Turn your idea into a product people pay for.",
@@ -95,7 +95,7 @@ and what breaks at 10,000.
   },
   {
     id:    "integration",
-    label: "integrations.api",
+    label: "integrations",
     color: "#fb923c",
     title: "System Integration",
     tagline: "Make your tools talk to each other.",
@@ -118,7 +118,7 @@ automatically, reliably, in real time.
   },
   {
     id:    "consulting",
-    label: "tech_consulting.txt",
+    label: "tech_consulting",
     color: "#f472b6",
     title: "Technology Consulting",
     tagline: "An outside eye on your inside problems.",
@@ -250,22 +250,13 @@ const ServiceViewer = ({ service, onClose }) => {
 
 // ─── Services page ─────────────────────────────────────────────────────────────
 const Services = () => {
-  const [open,     setOpen]     = useState(null);
-  const [selected, setSelected] = useState(null);
-  const lastTap = {};
-
-  const handleTap = (id, openFn) => {
-    const now = Date.now();
-    if (now - (lastTap[id] || 0) < 350) openFn();
-    else setSelected(id);
-    lastTap[id] = now;
-  };
+  const [open, setOpen] = useState(null);
 
   return (
     <>
       <div
         style={{ width: "100%", height: "100%", padding: "clamp(16px,3vw,28px)", overflowY: "auto", WebkitOverflowScrolling: "touch" }}
-        onClick={() => setSelected(null)}
+        onClick={() => setOpen(null)}
       >
         <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", marginBottom: "clamp(16px,3vh,24px)", textTransform: "uppercase" }}>
           Services — {SERVICES.length} files
@@ -278,17 +269,11 @@ const Services = () => {
               label={svc.label}
               size={72}
               color={svc.color}
-              selected={selected === svc.id}
-              onClick={(e) => { e.stopPropagation(); setSelected(svc.id); }}
-              onDoubleClick={() => setOpen(svc)}
-              onTouchEnd={(e) => { e.stopPropagation(); handleTap(svc.id, () => setOpen(svc)); }}
+              selected={open?.id === svc.id}
+              onClick={(e) => { e.stopPropagation(); setOpen(svc); }}
             />
           ))}
         </div>
-
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em", marginTop: "24px" }}>
-          double-click to open
-        </p>
       </div>
 
       {open && <ServiceViewer service={open} onClose={() => setOpen(null)} />}

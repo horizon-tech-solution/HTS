@@ -5,8 +5,8 @@ import { useState } from "react";
 // Replace CONTACT_INFO with real details
 
 const CONTACT_INFO = {
-  email:    "hello@yourcompany.com",
-  location: "Your City, Country",
+  email:    "horizontechsolution680@gmail.com",
+  location: "cameroon",
   response: "We respond within 24 hours.",
 };
 
@@ -107,7 +107,7 @@ const Contact = () => {
       padding: "clamp(16px, 3vw, 28px)",
       display: "flex", flexDirection: "column", gap: "clamp(20px, 4vh, 32px)",
     }}>
-      <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+      <p style={{ color: "#ffffff", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
         Contact — contact.form
       </p>
 

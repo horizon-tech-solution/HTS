@@ -7,7 +7,7 @@ const COMPANY_NAME = "Your Company";
 const OPENINGS = [
   {
     id:       "fullstack",
-    label:    "fullstack_dev.role",
+    label:    "fullstack_dev",
     color:    "#60a5fa",
     title:    "Full-Stack Developer",
     type:     "Full-time · Remote",
@@ -40,7 +40,7 @@ What we're looking for:
   },
   {
     id:       "backend",
-    label:    "backend_engineer.role",
+    label:    "backend_engineer",
     color:    "#34d399",
     title:    "Backend Engineer",
     type:     "Full-time · Remote",
@@ -71,7 +71,7 @@ What we're looking for:
   },
   {
     id:       "designer",
-    label:    "ui_ux_designer.role",
+    label:    "ui_ux_designer",
     color:    "#f472b6",
     title:    "UI/UX Designer",
     type:     "Full-time · Remote",
@@ -103,7 +103,7 @@ What we're looking for:
   },
   {
     id:       "sales",
-    label:    "business_dev.role",
+    label:    "business_dev",
     color:    "#fbbf24",
     title:    "Business Development",
     type:     "Full-time · Remote / Hybrid",
@@ -159,14 +159,14 @@ const JobViewer = ({ job, onClose }) => (
       height: "clamp(48px, 7vh, 60px)",
       background: "#0c0c0c", borderBottom: "1px solid #1a1a1a", flexShrink: 0,
     }}>
-      <span style={{ color: "#2e2e2e", fontSize: "11px", fontFamily: "'Courier New', monospace", letterSpacing: "0.08em" }}>
+      <span style={{ color: "#ffffff", fontSize: "11px", fontFamily: "'Courier New', monospace", letterSpacing: "0.08em" }}>
         careers / {job.label}
       </span>
       <button
         onClick={onClose}
         style={{
           background: "transparent", border: "1px solid #2a2a2a",
-          color: "#555", cursor: "pointer", padding: "0 16px",
+          color: "#ffffff", cursor: "pointer", padding: "0 16px",
           height: "34px", borderRadius: "6px",
           fontFamily: "'Courier New', monospace", fontSize: "11px",
           letterSpacing: "0.06em", transition: "all 0.15s",
@@ -200,7 +200,7 @@ const JobViewer = ({ job, onClose }) => (
           <p style={{ color: job.color, fontFamily: "'Courier New', monospace", fontSize: "12px", letterSpacing: "0.08em", marginBottom: "6px" }}>
             {job.type}
           </p>
-          <p style={{ color: "#3a3a3a", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.06em" }}>
+          <p style={{ color: "#ffffff", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.06em" }}>
             {job.stack}
           </p>
         </div>
@@ -209,7 +209,7 @@ const JobViewer = ({ job, onClose }) => (
         <pre style={{
           fontFamily: "'Courier New', monospace",
           fontSize: "clamp(14px, 2vw, 18px)",
-          color: "#aaa", lineHeight: 2, whiteSpace: "pre-wrap",
+          color: "#ffffff", lineHeight: 2, whiteSpace: "pre-wrap",
           margin: 0, borderLeft: `2px solid ${job.color}`,
           paddingLeft: "20px",
         }}>
@@ -220,7 +220,7 @@ const JobViewer = ({ job, onClose }) => (
         <pre style={{
           fontFamily: "'Courier New', monospace",
           fontSize: "clamp(12px, 1.6vw, 14px)",
-          color: "#666", lineHeight: 2.1,
+          color: "#f0f0f0", lineHeight: 2.1,
           whiteSpace: "pre-wrap", margin: 0, letterSpacing: "0.01em",
         }}>
           {job.body}
@@ -228,10 +228,10 @@ const JobViewer = ({ job, onClose }) => (
 
         {/* Apply CTA */}
         <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "28px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p style={{ color: "#3a3a3a", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <p style={{ color: "#f5f5f5", fontFamily: "'Courier New', monospace", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             How to apply
           </p>
-          <p style={{ color: "#666", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
+          <p style={{ color: "#ececec", fontFamily: "'Courier New', monospace", fontSize: "13px", lineHeight: 1.8 }}>
             Send your CV and a short note about why this role to:
           </p>
           <a
@@ -266,7 +266,7 @@ const Careers = () => {
         style={{ width: "100%", height: "100%", overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "clamp(16px,3vw,28px)", display: "flex", flexDirection: "column", gap: "clamp(20px,4vh,28px)" }}
         onClick={() => setSelected(null)}
       >
-        <p style={{ color: "#333", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+        <p style={{ color: "#ececec", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
           Careers — {OPENINGS.length} open roles
         </p>
 
@@ -280,15 +280,15 @@ const Careers = () => {
             how_we_work.txt
           </p>
           {CULTURE_NOTES.map((note, i) => (
-            <p key={i} style={{ color: "#555", fontSize: "clamp(10px,1.3vw,12px)", fontFamily: "'Courier New', monospace", lineHeight: 1.7 }}>
-              <span style={{ color: "#2e2e2e", marginRight: "8px" }}>→</span>{note}
+            <p key={i} style={{ color: "#f5f5f5", fontSize: "clamp(10px,1.3vw,12px)", fontFamily: "'Courier New', monospace", lineHeight: 1.7 }}>
+              <span style={{ color: "#f1f1f1", marginRight: "8px" }}>→</span>{note}
             </p>
           ))}
         </div>
 
         {/* Job files */}
         <div>
-          <p style={{ color: "#2e2e2e", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
+          <p style={{ color: "#ffffff", fontSize: "9px", fontFamily: "'Courier New', monospace", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>
             open_positions/
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: "8px" }}>
@@ -305,7 +305,7 @@ const Careers = () => {
           </div>
         </div>
 
-        <p style={{ color: "#282828", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em" }}>
+        <p style={{ color: "#dddddd", fontSize: "10px", fontFamily: "'Courier New', monospace", letterSpacing: "0.06em" }}>
           double-click hint removed — click to open
         </p>
       </div>
